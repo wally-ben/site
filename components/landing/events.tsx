@@ -1,8 +1,9 @@
 "use client";
+import { useTranslations } from "next-intl";
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { AirtableProgram } from "../../lib/programs";
 import { parseLocalDate, selectFeaturedPrograms } from "../../lib/programs";
 import { BtnArrow } from "./btn-arrow";
@@ -24,8 +25,11 @@ function SkeletonCard() {
 
 // ── Dynamic event card ───────────────────────────────────────────────────────
 function EventCard({ program }: { program: AirtableProgram }) {
+  const t = useTranslations("Home");
+  const tc = useTranslations("Common");
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const endDate = parseLocalDate(program.endDate);
+  // endDate may be null for indefinite programs
+  const endDate = program.endDate ? parseLocalDate(program.endDate) : null;
 
   const s = program.site;
   const bgColor = s?.bgColor ?? "var(--surface)";
@@ -60,8 +64,10 @@ function EventCard({ program }: { program: AirtableProgram }) {
     } else {
       badgeLabel = `${start.getDate()} ${start.toLocaleDateString("en-GB", { month: "short" })} – ${end.getDate()} ${end.toLocaleDateString("en-GB", { month: "short" })} ${end.getFullYear()}`;
     }
-  } else {
+  } else if (endDate) {
     badgeLabel = `Ends ${endDate.toLocaleDateString("en-GB", { day: "numeric", month: "short" })}`;
+  } else {
+    badgeLabel = "Ongoing";
   }
 
   return (
@@ -237,7 +243,7 @@ function EventCard({ program }: { program: AirtableProgram }) {
             onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
           >
-            Start now <BtnArrow />
+            {tc("startNow")} <BtnArrow />
           </a>
         )}
 
@@ -256,7 +262,7 @@ function EventCard({ program }: { program: AirtableProgram }) {
               paddingRight: 110,
             }}
           >
-            Join the discussion in{" "}
+            {t("eventsSlack")}{" "}
             <a
               href={slackUrl ?? "#"}
               target="_blank"
@@ -311,6 +317,7 @@ export function EventsSection({
 }: {
   initialCards?: AirtableProgram[] | null;
 }) {
+  const t = useTranslations("Home");
   const [cards, setCards] = useState<AirtableProgram[] | null>(initialCards);
 
   useEffect(() => {
@@ -390,7 +397,7 @@ export function EventsSection({
             fontWeight: "normal",
           }}
         >
-          Imagine a world where
+          {t("eventsTitle")}
         </p>
         <p
           style={{
@@ -407,7 +414,7 @@ export function EventsSection({
             paddingBottom: 4,
           }}
         >
-          you were here:
+          {t("eventsTitleAccent")}
         </p>
       </div>
 
@@ -425,7 +432,7 @@ export function EventsSection({
           zIndex: 1,
         }}
       >
-        Every event below is free, open to any teen, and happening right now. Yes, you can go.
+        {t("eventsSubtext")}
       </p>
 
       {/* 2×2 Grid */}
@@ -464,7 +471,7 @@ export function EventsSection({
             marginBottom: 8,
           }}
         >
-          Don&apos;t see something you like?
+          {t("eventsNone")}
         </p>
         <Link
           href="/programs"
@@ -487,7 +494,7 @@ export function EventsSection({
             cursor: "pointer",
           }}
         >
-          Explore all programs <BtnArrow />
+          {t("eventsExplore")} <BtnArrow />
         </Link>
       </div>
 
