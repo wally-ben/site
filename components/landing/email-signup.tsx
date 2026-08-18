@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { isValidEmail } from "@/lib/email";
+import { useTranslations } from "next-intl";
 import { sendToAuth } from "../../lib/send-auth";
 
 interface EmailSignupInputProps {
@@ -47,19 +49,15 @@ const cfg = {
 >;
 
 export function EmailSignupInput({ variant = "hero" }: EmailSignupInputProps) {
+  const tc = useTranslations("Common");
   const [e, setE] = useState("");
   const [err, setErr] = useState(false);
   const [f, setF] = useState(false);
   const isVideo = variant === "video";
   const isReady = variant === "ready";
 
-  const isValid = (v: string) => {
-    const t = v.trim();
-    return t.length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t);
-  };
-
   const submit = () => {
-    if (!isValid(e)) {
+    if (!isValidEmail(e)) {
       setErr(true);
       return;
     }
@@ -96,7 +94,7 @@ export function EmailSignupInput({ variant = "hero" }: EmailSignupInputProps) {
         <input
           id={c.inputId}
           type="email"
-          aria-label="Email address"
+          aria-label={tc("emailAddress")}
           placeholder="orpheus@example.com"
           value={e}
           onChange={(ev) => {
@@ -161,7 +159,7 @@ export function EmailSignupInput({ variant = "hero" }: EmailSignupInputProps) {
             }
           }}
         >
-          Join!
+          {tc("join")}
         </button>
       </div>
 
@@ -185,7 +183,7 @@ export function EmailSignupInput({ variant = "hero" }: EmailSignupInputProps) {
             boxShadow: "0 4px 12px rgba(236,55,80,0.3)",
           }}
         >
-          Enter a valid email address
+          {tc("invalidEmail")}
           <div
             style={{
               position: "absolute",
