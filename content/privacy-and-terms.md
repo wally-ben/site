@@ -47,6 +47,9 @@ We obtain information about you through the means discussed below when we provid
 
 Sometimes we have to share information with service providers working on our behalf, such as website hosting, security services, and events logistics. We require that these parties process such information in compliance with this Privacy Notice and authorize them to use the information only for the purposes for which it is provided to them.
 
+Your mobile information will not be sold or shared with third parties for promotional or marketing purposes.
+Text messaging opt-in data and consent will not be shared with any third parties, except service providers that assist us in delivering messages or as required by law.
+
 We may disclose information when it's necessary to protect the security and integrity of our platform, prevent fraud or abuse, defend against legal claims, or protect the safety of our users and community.
 
 #### Third‑Party Websites and Services
@@ -156,5 +159,7 @@ Without limiting the foregoing, the following additional terms apply to all Chal
 **CHALLENGES:** Hack Club proposes Challenges based on Activities that Hack Club has determined will advance the Purposes (e.g. engaging in coding challenges that will develop individual skills or developing a program that will have public benefit). Other than alignment with its Purposes, these Challenges are not for Hack Club's benefit and do not create an employment, contractor, agency, or any other relationship between a Hack Club Party or the Participant.
 
 In participating in a Challenge, a Participant agrees to observe Hack Club's Code of Conduct. In addition to the broad discretion with respect to Awards and Challenges described above, Hack Club may also, for any violations of the Code of Conduct by a Participant or for any other conduct Hack Club deems in its sole discretion to be contrary to the spirit of such Code of Conduct or the Purposes, Hack Club may deduct, for purposes of evaluating the Participant's performance of the Challenge, any markers of Participant's progress (e.g. tickets, points, etc.), refuse to issue an Award for the Participant, bar Participant's participation in the Challenge or future Challenges, or take any other disciplinary actions available to Hack Club with respect to the Challenge or future Challenges.
+
+**ELIGIBILITY:** Participation in a Challenge is limited to Participants who are 13 to 18 years old. A Participant's eligibility ends on their 19th birthday. If a Participant turns 19 during a Challenge, any work, submissions, hours, or other progress made on or after their 19th birthday does not count toward the Challenge and is not eligible for any Award.
 
 **By participating in any Challenge, the Participant fully and unconditionally agrees to and accepts these Terms. A minor may only participate in a Challenge with the consent of a parent or guardian. By participating in any of our online Challenges, you're agreeing to these Terms. If you're under 18, make sure you have your parent or guardian's permission first because when you join in, you (and your parent/guardian if you're a minor) are letting us know you're good with these Terms. Our in-person events require signed parental consent.**

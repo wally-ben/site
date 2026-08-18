@@ -554,7 +554,7 @@
     "slackId": "U06PR6B8D37",
     "email": "alexren",
     "website": "https://dari.zone",
-    "avatar": "https://raw.githubusercontent.com/qcoral/assets/refs/heads/main/pfp-irl.jpeg"
+    "avatar": "https://raw.githubusercontent.com/qcoral/assets/refs/heads/main/pfp-irl.png"
   },
   {
     "name": "Nathan Alspaugh",
@@ -823,12 +823,12 @@
   {
     "name": "Lynn Beato",
     "department": "HQ",
-    "role": "Club Operations and Community Relations",
+    "role": "Clubs Resource Tech",
     "acknowledged": false,
-    "bio": "Lynn is a 14 year old Hack Clubber from Portugal, who got involved with Clubs in November 2024, when she started her club at her school. She's also ran her own Scrapyard event, in Lisbon, as well as a Daydream event in DC. She can't wait to get more clubs up and running with cool resources!",
+    "bio": "Lynn is a Hack Clubber from Portugal, who got involved with Clubs in November 2024, when she started her club at her school. She's also ran her own Hack Club events in Lisbon and DC. She can't wait to get more clubs up and running with cool resources!",
     "slackId": "U07ULNFPQ4T",
     "email": "lynn",
-    "website": "https://lynn.pt/",
+    "website": "https://headpats.you/",
     "avatar": "https://cachet.hackclub.com/users/U07ULNFPQ4T/r"
   },
   {
@@ -1240,5 +1240,16 @@
     "email": "spencer@events.hackclub.com",
     "website": "",
     "avatar": "https://cachet.hackclub.com/users/U08U39SCQAE/r"
+  },
+  {
+    "name": "Lynn",
+    "department": "Moderation",
+    "role": "Conduct and Moderation",
+    "acknowledged": false,
+    "bio": "Lynn is a teenager from New York who runs events and YSWSs, does art, and works on Conduct and Moderation at Hack Club! She loves ferrets and hates New Jersey (both unequivocally).",
+    "slackId": "U08EMT46G3V",
+    "email": "lynnj",
+    "website": "",
+    "avatar": "https://i.ibb.co/qMBwqHwC/lynn-With-AMysterious-Umbrella-Named-Perry.png"
   }
 ]
