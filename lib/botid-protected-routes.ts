@@ -12,4 +12,9 @@ export const botIdProtectedRoutes: BotIdProtectedRoute[] = [
     method: "POST",
     advancedOptions: { checkLevel: "basic" },
   },
+  {
+    path: "/api/teachers-signup",
+    method: "POST",
+    advancedOptions: { checkLevel: "basic" },
+  },
 ];

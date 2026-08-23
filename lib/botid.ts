@@ -5,6 +5,8 @@ import type { BotIdProtectedRoute } from "./botid-protected-routes";
 type BotIdCheckLevel = NonNullable<BotIdProtectedRoute["advancedOptions"]>["checkLevel"];
 
 export async function blockBotRequest(checkLevel: BotIdCheckLevel = "basic") {
+  if (!process.env.VERCEL) return null;
+
   const verification = await checkBotId({
     advancedOptions: { checkLevel },
   });
