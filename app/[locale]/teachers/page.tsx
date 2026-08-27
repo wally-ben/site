@@ -75,6 +75,12 @@ export default async function TeachersPage({ params }: Props) {
             proud of — all with independence and agency. You don&apos;t need to
             code to help make it happen!
           </p>
+          <div className={styles["teacher-hero-signup"]}>
+            <p className={styles["teacher-hero-signup-label"]}>
+              Get updates on how to support Hack Club near you
+            </p>
+            <TeachersEmailSignup />
+          </div>
         </section>
 
         <section className={styles["teacher-band"]}>
@@ -246,6 +252,7 @@ export default async function TeachersPage({ params }: Props) {
                   src={box.image}
                   alt=""
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
                   className={styles["teacher-engage-box-image"]}
                 />
                 <p className={styles["teacher-engage-box-label"]}>

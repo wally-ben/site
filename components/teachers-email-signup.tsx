@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { isValidEmail } from "@/lib/email";
 
 const F = "var(--font-phantom)";
@@ -21,6 +21,10 @@ const inputStyle = {
 };
 
 export function TeachersEmailSignup() {
+  const idPrefix = useId().replace(/:/g, "");
+  const firstNameId = `${idPrefix}-first-name`;
+  const lastNameId = `${idPrefix}-last-name`;
+  const emailId = `${idPrefix}-email`;
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -73,9 +77,9 @@ export function TeachersEmailSignup() {
   return (
     <div style={{ width: "min(480px, calc(100vw - 48px))", margin: "0 auto" }}>
       <style>{`
-        #teacher-first-name::placeholder,
-        #teacher-last-name::placeholder,
-        #teacher-email::placeholder {
+        #${firstNameId}::placeholder,
+        #${lastNameId}::placeholder,
+        #${emailId}::placeholder {
           opacity: 0.5;
         }
       `}</style>
@@ -90,7 +94,7 @@ export function TeachersEmailSignup() {
         }}
       >
         <input
-          id="teacher-first-name"
+          id={firstNameId}
           type="text"
           placeholder="first name"
           value={firstName}
@@ -102,7 +106,7 @@ export function TeachersEmailSignup() {
           style={inputStyle}
         />
         <input
-          id="teacher-last-name"
+          id={lastNameId}
           type="text"
           placeholder="last name"
           value={lastName}
@@ -115,7 +119,7 @@ export function TeachersEmailSignup() {
         />
       </div>
       <input
-        id="teacher-email"
+        id={emailId}
         type="email"
         placeholder="email"
         value={email}
@@ -133,6 +137,7 @@ export function TeachersEmailSignup() {
         type="button"
         onClick={submit}
         disabled={disabled}
+        className="dark-btn"
         style={{
           width: "100%",
           background: "var(--foreground)",

@@ -121,23 +121,23 @@ const convertFaqs: Faq[] = [
 
 const content = {
   new: {
-    number: "01",
     title: "Starting a new club",
     description: "Start a new Hack Club!",
     modalTitle: "Starting a Hack Club",
+    bg: "/assets/backImg2.webp",
     faqs: newFaqs,
   },
   convert: {
-    number: "02",
     title: "Converting an existing club",
     description: "Turn your existing club into a Hack Club!",
     modalTitle: "Converting an existing club",
+    bg: "/assets/backImg6.webp",
     faqs: convertFaqs,
   },
 } as const;
 
 const Arrow = () => (
-  <span aria-hidden="true">
+  <span className="btn-arrow" aria-hidden="true">
     <BtnArrowSvg />
   </span>
 );
@@ -210,20 +210,32 @@ export function LearnMoreCards({ styles }: { styles: Styles }) {
     <>
       {(["new", "convert"] as const).map((kind) => {
         const card = content[kind];
-        const colour = kind === "new" ? "clubs-path-red" : "clubs-path-blue";
         return (
           <button
             key={kind}
             type="button"
-            className={`${styles["clubs-path"]} ${styles[colour]} ${styles["clubs-path-button"]}`}
+            className={styles["clubs-joining-card"]}
             onClick={() => setOpen(kind)}
           >
-            <span className={styles["clubs-path-number"]}>{card.number}</span>
-            <div>
-              <h3>{card.title}</h3>
-              <p>{card.description}</p>
+            <Image
+              src={card.bg}
+              alt=""
+              fill
+              sizes="(max-width: 900px) 100vw, 50vw"
+              className={styles["clubs-joining-card-bg"]}
+            />
+            <div className={styles["clubs-joining-card-overlay"]} />
+            <div className={styles["clubs-joining-card-content"]}>
+              <h3 className={styles["clubs-joining-card-title"]}>
+                {card.title}
+              </h3>
+              <p className={styles["clubs-joining-card-body"]}>
+                {card.description}
+              </p>
+              <span className={`${styles["clubs-joining-card-link"]} cta-btn`}>
+                Learn more <Arrow />
+              </span>
             </div>
-            <Arrow />
           </button>
         );
       })}
@@ -270,10 +282,18 @@ export function LearnMoreCards({ styles }: { styles: Styles }) {
           )}
           <dialog
             open
-            className={`${styles["clubs-modal"]} ${styles[open === "new" ? "clubs-modal-red" : "clubs-modal-blue"]}`}
+            className={styles["clubs-modal"]}
             aria-modal="true"
             aria-labelledby="clubs-modal-title"
           >
+            <Image
+              src={modal.bg}
+              alt=""
+              fill
+              sizes="620px"
+              className={styles["clubs-modal-photo"]}
+            />
+            <div className={styles["clubs-modal-photo-overlay"]} />
             <button
               type="button"
               className={styles["clubs-modal-close"]}
@@ -296,7 +316,7 @@ export function LearnMoreCards({ styles }: { styles: Styles }) {
               href="https://apply.hackclub.com"
               target="_blank"
               rel="noreferrer"
-              className={styles["clubs-modal-cta"]}
+              className={`${styles["clubs-modal-cta"]} cta-btn`}
             >
               Apply to Hack Club <Arrow />
             </a>

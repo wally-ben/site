@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { Navbar } from "@/components/Navbar";
@@ -16,7 +17,7 @@ import sleddingSticker from "./assets/sledding.png";
 import appleSticker from "./assets/randomAppleCuzWhyNot.png";
 import heidiSticker from "./assets/heidi.png";
 import pcbSticker from "./assets/pcb.png";
-import canvaLogo from "./assets/canva.png";
+import spacesLogo from "./assets/spaces.png";
 import startLogo from "./assets/start.svg";
 import creature1 from "./assets/creature1.webp";
 import bobaLogo from "./assets/boba.png";
@@ -48,32 +49,59 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const Arrow = () => (
-  <span className={styles["clubs-arrow"]} aria-hidden="true">
+  <span className={`${styles["clubs-arrow"]} btn-arrow`} aria-hidden="true">
     <BtnArrowSvg />
   </span>
 );
 
+function JoiningCard({
+  title,
+  description,
+  bg,
+  children,
+}: {
+  title: string;
+  description: string;
+  bg: string;
+  children: ReactNode;
+}) {
+  return (
+    <>
+      <Image
+        src={bg}
+        alt=""
+        fill
+        sizes="(max-width: 900px) 100vw, 50vw"
+        className={styles["clubs-joining-card-bg"]}
+      />
+      <div className={styles["clubs-joining-card-overlay"]} />
+      <div className={styles["clubs-joining-card-content"]}>
+        <h3 className={styles["clubs-joining-card-title"]}>{title}</h3>
+        <p className={styles["clubs-joining-card-body"]}>{description}</p>
+        {children}
+      </div>
+    </>
+  );
+}
+
 function PathCard({
-  number,
   title,
   description,
   href,
-  className,
+  bg,
 }: {
-  number: string;
   title: string;
   description: string;
   href: string;
-  className: string;
+  bg: string;
 }) {
   return (
-    <Link href={href} className={`${styles["clubs-path"]} ${className}`}>
-      <span className={styles["clubs-path-number"]}>{number}</span>
-      <div>
-        <h3>{title}</h3>
-        <p>{description}</p>
-      </div>
-      <Arrow />
+    <Link href={href} className={styles["clubs-joining-card"]}>
+      <JoiningCard title={title} description={description} bg={bg}>
+        <span className={`${styles["clubs-joining-card-link"]} cta-btn`}>
+          Learn more <Arrow />
+        </span>
+      </JoiningCard>
     </Link>
   );
 }
@@ -82,12 +110,13 @@ export default async function ClubPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [photoOne, photoTwo, photoThree, photoFour, photoFive, photoSix] =
+  const [photoOne, photoTwo, photoThree, photoFour, photoFive, photoSix, perksPhotoOne] =
     shuffle(IMAGES);
-  const [stickerOne, stickerTwo, stickerThree, stickerFour] = shuffle(STICKERS);
+  const [stickerOne, stickerTwo, stickerThree, stickerFour, perksSticker] =
+    shuffle(STICKERS);
   return (
     <>
-      <Navbar invertColors />
+      <Navbar />
       <main id="main" tabIndex={-1}>
         <section className={styles["clubs-hero"]}>
           <div className={styles["clubs-grid"]} aria-hidden="true" />
@@ -173,17 +202,35 @@ export default async function ClubPage({ params }: Props) {
             </p>
             <div className={styles["clubs-actions"]}>
               <a
-                className={`${styles["clubs-button"]} ${styles["clubs-button-red"]}`}
+                className={`${styles["clubs-button"]} ${styles["clubs-button-red"]} cta-btn`}
                 href="https://apply.hackclub.com"
                 target="_blank"
                 rel="noreferrer"
               >
                 Start a club <Arrow />
               </a>
+              <a
+                className={`${styles["clubs-button"]} ${styles["clubs-button-outline"]} cta-btn`}
+                href="https://clubs.hackclub.com/auth/login"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Sign in
+              </a>
               <a className={styles["clubs-text-link"]} href="#learn-more">
                 Learn more <span aria-hidden="true">↓</span>
               </a>
             </div>
+            <p className={styles["clubs-hero-signin-note"]}>
+              Club member?{" "}
+              <a
+                href="https://clubs.hackclub.com/auth/member"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Sign in with email
+              </a>
+            </p>
           </div>
           <div
             className={`${styles["clubs-sticker"]} ${styles["clubs-sticker-one"]}`}
@@ -259,47 +306,36 @@ export default async function ClubPage({ params }: Props) {
           </div>
         </div>
 
-        <section className={styles["clubs-intro"]}>
-          <div className={styles["clubs-intro-photo"]} aria-hidden="true">
-            <Image
-              src="https://cdn.hackclub.com/019db857-6029-75d8-b74b-1de86e95a794/joiningCard1Bg.webp"
-              alt=""
-              fill
-              sizes="100vw"
-            />
-          </div>
-          <div className={styles["clubs-intro-photo-overlay"]} aria-hidden="true" />
-          <div className={styles["clubs-section-heading"]}>
-            <p className={styles["clubs-eyebrow"]}>Become a part of</p>
-            <h2>
-              The Hack Club Slack <em>Community.</em>
-            </h2>
-            <div className={styles["clubs-intro-body"]}>
-              <p>
-                Slack is where the community hangs out! Slack is a chat app
-                like Discord, but better! It has unlimited custom emojis and
-                uncapped file uploads.
-              </p>
-              <a
-                href="https://slack.hackclub.com"
-                target="_blank"
-                rel="noreferrer"
-                className={`${styles["clubs-button"]} ${styles["clubs-button-red"]}`}
-              >
-                <Image src={slackLogo} alt="" width={20} height={20} />
-                Join the community <Arrow />
-              </a>
-            </div>
-          </div>
-          <SlackStats styles={styles} />
-          <div className={styles["clubs-intro-sticker"]} aria-hidden="true">
-            <Image src={slackLogo} alt="" fill sizes="100px" />
-          </div>
-        </section>
         <section
           className={styles["clubs-perks"]}
           aria-labelledby="perks-title"
         >
+          <div className={styles["clubs-perks-bg-layer"]} aria-hidden="true">
+            <div className={styles["clubs-perks-dots"]} />
+            <div className={styles["clubs-perks-glow"]} />
+          </div>
+          <div
+            className={`${styles["clubs-perks-photo"]} ${styles["clubs-perks-photo-one"]}`}
+            aria-hidden="true"
+          >
+            <Image
+              src={perksPhotoOne}
+              alt=""
+              fill
+              sizes="(max-width: 1100px) 0px, 210px"
+            />
+          </div>
+          <div
+            className={`${styles["clubs-perks-sticker"]} ${styles["clubs-perks-sticker-one"]}`}
+            aria-hidden="true"
+          >
+            <Image
+              src={perksSticker}
+              alt=""
+              fill
+              sizes="(max-width: 1100px) 0px, 96px"
+            />
+          </div>
           <div className={styles["clubs-perks-heading"]}>
             <p className={styles["clubs-eyebrow"]}>Club perks</p>
             <h2 id="perks-title">
@@ -310,35 +346,6 @@ export default async function ClubPage({ params }: Props) {
             <p>Everything your club needs to grow!</p>
           </div>
           <div className={styles["clubs-perks-grid"]}>
-            <article
-              className={`${styles["clubs-perk"]} ${styles["clubs-perk-blue"]}`}
-            >
-              <div
-                className={`${styles["clubs-perk-sticker"]} ${styles["clubs-perk-sticker-cascade"]}`}
-                aria-hidden="true"
-              >
-                <Image src={cascadeSticker} alt="" fill sizes="84px" />
-              </div>
-              <Image
-                src={canvaLogo}
-                alt="Canva"
-                className={styles["clubs-perk-icon"]}
-                width={48}
-                height={48}
-              />
-              <h3>Canva Pro</h3>
-              <p>
-                Design posters, slides, and anything else your club needs with
-                Canva Pro for free.
-              </p>
-              <a
-                href="https://hack.club/canva"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Explore Canva <Arrow />
-              </a>
-            </article>
             <article
               className={`${styles["clubs-perk"]} ${styles["clubs-perk-yellow"]}`}
             >
@@ -370,6 +377,7 @@ export default async function ClubPage({ params }: Props) {
                 href="https://startgrant.hackclub.com"
                 target="_blank"
                 rel="noreferrer"
+                className={`${styles["clubs-joining-card-cta"]} cta-btn`}
               >
                 Explore Club Starter <Arrow />
               </a>
@@ -399,8 +407,40 @@ export default async function ClubPage({ params }: Props) {
                 href="https://clubs.hackclub.com/"
                 target="_blank"
                 rel="noreferrer"
+                className={`${styles["clubs-joining-card-cta"]} cta-btn`}
               >
                 Visit the shop <Arrow />
+              </a>
+            </article>
+            <article
+              className={`${styles["clubs-perk"]} ${styles["clubs-perk-blue"]}`}
+            >
+              <div
+                className={`${styles["clubs-perk-sticker"]} ${styles["clubs-perk-sticker-cascade"]}`}
+                aria-hidden="true"
+              >
+                <Image src={cascadeSticker} alt="" fill sizes="84px" />
+              </div>
+              <Image
+                src={spacesLogo}
+                alt="Spaces"
+                className={styles["clubs-perk-icon"]}
+                width={48}
+                height={48}
+              />
+              <h3>Spaces</h3>
+              <p>
+                All-in-one web IDE to create, host and collaborate in with
+                over 500 supported languages and a variety of templates to
+                use.
+              </p>
+              <a
+                href="https://spaces.hackclub.com"
+                target="_blank"
+                rel="noreferrer"
+                className={`${styles["clubs-joining-card-cta"]} cta-btn`}
+              >
+                Explore Spaces <Arrow />
               </a>
             </article>
           </div>
@@ -409,7 +449,7 @@ export default async function ClubPage({ params }: Props) {
               href="https://toolbox.hackclub.com"
               target="_blank"
               rel="noreferrer"
-              className={styles["clubs-text-link"]}
+              className={`${styles["clubs-text-link"]} cta-btn`}
             >
               Explore all club perks <Arrow />
             </a>
@@ -440,7 +480,7 @@ export default async function ClubPage({ params }: Props) {
               <path
                 d="M0,18 C40,18 40,2 80,2 C120,2 120,18 160,18 C200,18 200,2 240,2 C280,2 280,18 320,18 C360,18 360,2 400,2 C440,2 440,18 480,18 C520,18 520,2 560,2 C600,2 600,18 640,18 C680,18 680,2 720,2 C760,2 760,18 800,18 C840,18 840,2 880,2 C920,2 920,18 960,18 C1000,18 1000,2 1040,2 C1080,2 1080,18 1120,18 C1160,18 1160,2 1200,2 C1240,2 1240,18 1280,18 C1320,18 1320,2 1360,2 C1400,2 1400,18 1440,18 C1480,18 1480,2 1520,2 C1560,2 1560,18 1600,18 C1640,18 1640,2 1680,2 C1720,2 1720,18 1760,18 C1800,18 1800,2 1840,2 C1880,2 1880,18 1920,18"
                 fill="none"
-                style={{ stroke: "var(--clubs-ink)" }}
+                className={styles["clubs-perks-wave-stroke"]}
                 strokeWidth="2.5"
                 vectorEffect="non-scaling-stroke"
               />
@@ -453,7 +493,7 @@ export default async function ClubPage({ params }: Props) {
             >
               <path
                 d="M0,40 L0,27 C40,27 40,8 80,8 C120,8 120,27 160,27 C200,27 200,8 240,8 C280,8 280,27 320,27 C360,27 360,8 400,8 C440,8 440,27 480,27 C520,27 520,8 560,8 C600,8 600,27 640,27 C680,27 680,8 720,8 C760,8 760,27 800,27 C840,27 840,8 880,8 C920,8 920,27 960,27 C1000,27 1000,8 1040,8 C1080,8 1080,27 1120,27 C1160,27 1160,8 1200,8 C1240,8 1240,27 1280,27 C1320,27 1320,8 1360,8 C1400,8 1400,27 1440,27 C1480,27 1480,8 1520,8 C1560,8 1560,27 1600,27 C1640,27 1640,8 1680,8 C1720,8 1720,27 1760,27 C1800,27 1800,8 1840,8 C1880,8 1880,27 1920,27 L1920,40 Z"
-                style={{ fill: "var(--clubs-ink)" }}
+                className={styles["clubs-perks-wave-fill"]}
               />
             </svg>
           </div>
@@ -477,7 +517,8 @@ export default async function ClubPage({ params }: Props) {
               </span>
             </p>
           </div>
-          <div className={styles["clubs-scroll-container"]}>
+          <div className={styles["clubs-scroll-wrap"]}>
+            <div className={styles["clubs-scroll-container"]}>
             <ul className={styles["clubs-scroll-row"]}>
               <li style={{ display: "contents" }}>
                 <a
@@ -673,8 +714,48 @@ export default async function ClubPage({ params }: Props) {
                 </a>
               </li>
             </ul>
+            </div>
           </div>
         </section>
+
+        <section className={styles["clubs-intro"]}>
+          <div className={styles["clubs-intro-photo"]} aria-hidden="true">
+            <Image
+              src="https://cdn.hackclub.com/019db857-6029-75d8-b74b-1de86e95a794/joiningCard1Bg.webp"
+              alt=""
+              fill
+              sizes="100vw"
+            />
+          </div>
+          <div className={styles["clubs-intro-photo-overlay"]} aria-hidden="true" />
+          <div className={styles["clubs-section-heading"]}>
+            <p className={styles["clubs-eyebrow"]}>Become a part of</p>
+            <h2>
+              The Hack Club Slack <em>Community.</em>
+            </h2>
+            <div className={styles["clubs-intro-body"]}>
+              <p>
+                Slack is where the community hangs out! Slack is a chat app
+                like Discord, but better! It has unlimited custom emojis and
+                uncapped file uploads.
+              </p>
+              <a
+                href="https://slack.hackclub.com"
+                target="_blank"
+                rel="noreferrer"
+                className={`${styles["clubs-button"]} ${styles["clubs-button-red"]} cta-btn`}
+              >
+                <Image src={slackLogo} alt="" width={20} height={20} />
+                Join the community <Arrow />
+              </a>
+            </div>
+          </div>
+          <SlackStats styles={styles} />
+          <div className={styles["clubs-intro-sticker"]} aria-hidden="true">
+            <Image src={slackLogo} alt="" fill sizes="100px" />
+          </div>
+        </section>
+
         <section
           className={styles["clubs-learn"]}
           id="learn-more"
@@ -685,24 +766,27 @@ export default async function ClubPage({ params }: Props) {
           <div className={styles["clubs-path-grid"]}>
             <LearnMoreCards styles={styles} />
             <PathCard
-              number="03"
               title="The Teacher Zone"
               description="This is where you can find ways to support a Hack Club at your school!"
               href="/teachers"
-              className={styles["clubs-path-yellow"]}
+              bg="/assets/backImg10.webp"
             />
             <a
-              className={`${styles["clubs-path"]} ${styles["clubs-path-ink"]}`}
+              className={styles["clubs-joining-card"]}
               href="https://school-toolbox.hackclub.com"
               target="_blank"
               rel="noreferrer"
+              aria-label="School toolbox"
             >
-              <span className={styles["clubs-path-number"]}>04</span>
-              <div>
-                <h3>School toolbox</h3>
-                <p>Resources for starting a Hack Club at your school!</p>
-              </div>
-              <Arrow />
+              <JoiningCard
+                title="School toolbox"
+                description="Resources for starting a Hack Club at your school!"
+                bg="/assets/backImg13.webp"
+              >
+                <span className={`${styles["clubs-joining-card-link"]} cta-btn`}>
+                  Learn more <Arrow />
+                </span>
+              </JoiningCard>
             </a>
           </div>
         </section>
@@ -715,7 +799,7 @@ export default async function ClubPage({ params }: Props) {
             at school is <em>yours.</em>
           </h2>
           <a
-            className={`${styles["clubs-button"]} ${styles["clubs-button-red"]}`}
+            className={`${styles["clubs-button"]} ${styles["clubs-button-red"]} cta-btn`}
             href="https://apply.hackclub.com"
             target="_blank"
             rel="noreferrer"
