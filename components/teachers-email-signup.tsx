@@ -75,7 +75,7 @@ export function TeachersEmailSignup() {
   const disabled = status === "loading" || status === "success";
 
   return (
-    <div style={{ width: "min(480px, calc(100vw - 48px))", margin: "0 auto" }}>
+    <div style={{ width: "100%", maxWidth: 480, margin: "0 auto" }}>
       <style>{`
         #${firstNameId}::placeholder,
         #${lastNameId}::placeholder,
