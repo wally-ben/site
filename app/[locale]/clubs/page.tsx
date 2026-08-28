@@ -120,7 +120,6 @@ export default async function ClubPage({ params }: Props) {
       <main id="main" tabIndex={-1}>
         <section className={styles["clubs-hero"]}>
           <div className={styles["clubs-grid"]} aria-hidden="true" />
-          <div className={styles["clubs-sun"]} aria-hidden="true" />
           <div
             className={`${styles["clubs-photo"]} ${styles["clubs-photo-one"]}`}
             aria-hidden="true"

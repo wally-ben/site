@@ -53,17 +53,6 @@
     linear-gradient(90deg, var(--clubs-paper) 1px, transparent 1px);
   background-size: 44px 44px;
 }
-.clubs-sun {
-  position: absolute;
-  z-index: -1;
-  width: min(66vw, 820px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  right: -10vw;
-  top: 9%;
-  background: repeating-radial-gradient(circle, #ffcf40 0 3px, #ff8c37 4px 9px);
-  box-shadow: 0 0 100px rgba(236, 55, 80, 0.4);
-}
 .clubs-hero-inner {
   position: relative;
   z-index: 4;
