@@ -534,8 +534,7 @@ export default async function ClubPage({ params }: Props) {
                     />
                     <h3>Boba Drops</h3>
                     <p>
-                      Host a boba workshop for your club, fully funded by Hack
-                      Club.
+                      Host a boba workshop for your club, make a website, get free boba!
                     </p>
                     <Image
                       src={bobaOrph}
@@ -590,8 +589,7 @@ export default async function ClubPage({ params }: Props) {
                   <div className={styles["clubs-project-content"]}>
                     <h3>Sprig</h3>
                     <p>
-                      Design a keyring and get it shipped to you with a
-                      backpack clip.
+                      You ship a game made on the sprig game engine, we ship a sprig console!
                     </p>
                     <div className={styles["clubs-project-logo-sprig"]}>
                       <Image src={sprigLogo} alt="Sprig" />
@@ -614,8 +612,8 @@ export default async function ClubPage({ params }: Props) {
                     />
                     <h3>TerminalCraft</h3>
                     <p>
-                      Design a keyring and get it shipped to you with a
-                      backpack clip.
+                      Develop a program that runs in the terminal, 
+                      earn a grant to spend on hardware and microcontrollers!
                     </p>
                   </div>
                 </a>
@@ -634,8 +632,8 @@ export default async function ClubPage({ params }: Props) {
                       className={styles["clubs-project-logo"]}
                     />
                     <p>
-                      Design a keyring and get it shipped to you with a
-                      backpack clip.
+                      Build a cooler website with HTML and CSS, with a unique 
+                      feature like a favicon, and get free ice cream!
                     </p>
                     <Image
                       src={swirlIcon}
@@ -659,8 +657,8 @@ export default async function ClubPage({ params }: Props) {
                       className={styles["clubs-project-logo"]}
                     />
                     <p>
-                      Design a keyring and get it shipped to you with a
-                      backpack clip.
+                      Add some extra flavor to your website, with CSS 
+                      and get toppings for your ice cream or boba!
                     </p>
                     <Image
                       src={parrot}
@@ -686,8 +684,8 @@ export default async function ClubPage({ params }: Props) {
                     />
                     <h3>Waffles</h3>
                     <p>
-                      Design a keyring and get it shipped to you with a
-                      backpack clip.
+                      Make a website that uses JavaScript, 
+                      and get free waffles!
                     </p>
                   </div>
                 </a>
@@ -706,14 +704,48 @@ export default async function ClubPage({ params }: Props) {
                       className={styles["clubs-project-logo"]}
                     />
                     <p>
-                      Design a keyring and get it shipped to you with a
-                      backpack clip.
+                      Make a retro game with PICO-8, get a grant for your club!
                     </p>
                   </div>
                 </a>
               </li>
             </ul>
             </div>
+          </div>
+        </section>
+
+        <section
+          className={styles["clubs-learn"]}
+          id="learn-more"
+          aria-labelledby="learn-title"
+        >
+          <p className={styles["clubs-eyebrow"]}>Learn more</p>
+          <h2 id="learn-title">Learn more about:</h2>
+          <div className={styles["clubs-path-grid"]}>
+            <LearnMoreCards styles={styles} />
+            <PathCard
+              title="The Teacher Zone"
+              description="This is where you can find ways to support a Hack Club at your school!"
+              href="/teachers"
+              bg="/assets/backImg10.webp"
+            />
+            <a
+              className={styles["clubs-joining-card"]}
+              href="https://school-toolbox.hackclub.com"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="School toolbox"
+            >
+              <JoiningCard
+                title="School toolbox"
+                description="Resources for starting a Hack Club at your school!"
+                bg="/assets/backImg13.webp"
+              >
+                <span className={`${styles["clubs-joining-card-link"]} cta-btn`}>
+                  Learn more <Arrow />
+                </span>
+              </JoiningCard>
+            </a>
           </div>
         </section>
 
@@ -752,41 +784,6 @@ export default async function ClubPage({ params }: Props) {
           <SlackStats styles={styles} />
           <div className={styles["clubs-intro-sticker"]} aria-hidden="true">
             <Image src={slackLogo} alt="" fill sizes="100px" />
-          </div>
-        </section>
-
-        <section
-          className={styles["clubs-learn"]}
-          id="learn-more"
-          aria-labelledby="learn-title"
-        >
-          <p className={styles["clubs-eyebrow"]}>Learn more</p>
-          <h2 id="learn-title">Learn more about:</h2>
-          <div className={styles["clubs-path-grid"]}>
-            <LearnMoreCards styles={styles} />
-            <PathCard
-              title="The Teacher Zone"
-              description="This is where you can find ways to support a Hack Club at your school!"
-              href="/teachers"
-              bg="/assets/backImg10.webp"
-            />
-            <a
-              className={styles["clubs-joining-card"]}
-              href="https://school-toolbox.hackclub.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="School toolbox"
-            >
-              <JoiningCard
-                title="School toolbox"
-                description="Resources for starting a Hack Club at your school!"
-                bg="/assets/backImg13.webp"
-              >
-                <span className={`${styles["clubs-joining-card-link"]} cta-btn`}>
-                  Learn more <Arrow />
-                </span>
-              </JoiningCard>
-            </a>
           </div>
         </section>
 
